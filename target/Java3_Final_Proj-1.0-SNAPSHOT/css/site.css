@@ -1,0 +1,74 @@
+body{
+    background: #f1f3f2;
+}
+
+a{
+    color: #6adbeb;
+}
+img {
+    max-width: 350px;
+}
+.jobSubTitle{
+    color: #Bababa;
+}
+.jobDetailSubTitle{
+    font-size: 16px;   
+}
+.material-icons {
+    font-size: 16px;
+}
+.title-bar{
+    background: #e3e3e3;
+    width: 100%;
+    margin: 0px auto;
+    padding: 1em;
+}
+#logoImg{
+    height: 40px;
+}
+.jobRowDetail{
+    	width: 90%;
+	margin: 0px auto;
+	padding: 10px;
+	
+}
+.alignleft{
+    float: left;
+    margin: 0;
+    font-weight: bold;
+}
+.alignright{
+    float: right;
+    margin: 0;
+}
+#jobDetails{
+        width: 90%;
+	margin: 0px auto;
+	padding: 10px;
+}
+form input{
+    width: 80%;
+    margin: 0px auto;  
+}
+.loginBody{
+    width: 20%;
+    align-content: center;
+    margin: 0px auto;
+    padding: auto;
+}
+.error{
+    color: red;
+}
+.applicationListBody{
+    margin: 0px auto;
+}
+.applicationRow{
+    padding: 10px;
+    border: 3px solid gray;
+    background: #e3e3e3;
+    border-radius: 5px;
+    margin: 5px auto;
+}
+#deactivateForm{
+    float: right;
+}

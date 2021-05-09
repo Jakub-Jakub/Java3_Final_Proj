@@ -1,0 +1,31 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/Java3_Final_Proj/jobs"><img id="logoImg" src="img/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/Java3_Final_Proj/jobs">View Jobs</a>
+        </li>
+        <c:if test="${username != null}">
+        <li class="nav-item">
+          <a class="nav-link" href="/Java3_Final_Proj/applications">Applications</a>
+        </li>
+        </c:if>
+      </ul>
+      <c:choose>
+        <c:when test="${username != null}">
+            <a href="<c:url value="/login"><c:param name="logout" value="true"/></c:url>">Logout</a>
+        </c:when>
+        <c:otherwise>
+            <a class="nav-link" href="/Java3_Final_Proj/login">Login</a>   
+        </c:otherwise>
+      </c:choose>
+
+    </div>
+  </div>
+</nav>
