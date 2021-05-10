@@ -45,6 +45,7 @@ public class JobServlet extends HttpServlet {
             while((line = reader.readLine()) != null)
             {
                 String[] jobProps = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+                if(Boolean.parseBoolean(jobProps[1])){
                 Job job = new Job
                         (
                                 Integer.parseInt(jobProps[0]),        //id
@@ -62,6 +63,7 @@ public class JobServlet extends HttpServlet {
                         );
                 jobs.add(job);
                 System.out.println(job);
+                }
             }            
         }
         catch(IOException e)

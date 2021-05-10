@@ -44,7 +44,7 @@
                             </div> 
                             <div class="jobRowDetail">
                                 <p class="alignleft">Wage</p>
-                                <p class="alignright"> ${fn:escapeXml(Job.salary)}
+                                <p class="alignright"> <fmt:formatNumber type="currency" value="${fn:escapeXml(Job.salary)}"/>
                                 <c:choose>
                                     <c:when test="${Job.wageCategory == 'Salaried'}">
                                         per year

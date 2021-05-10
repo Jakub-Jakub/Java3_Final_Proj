@@ -106,8 +106,10 @@ public class ApplicationServlet extends HttpServlet {
                 break;
             }
         }
+        System.out.println(appToView);
         if(appToView == null){
             response.sendRedirect("applications");
+            return;
         }
         request.setAttribute("Application", appToView);
         request.getRequestDispatcher("/WEB-INF/jsp/view/application.jsp").forward(request, response);
@@ -223,20 +225,28 @@ public class ApplicationServlet extends HttpServlet {
         System.out.println(startDate);
         if(startDate == null || startDate.isBlank())
         {
-            application.setPhoneError("StartDate cannot be blank");
+            application.setStartDateError("StartDate cannot be blank");
             isValidApplication =false;
-        }
-        LocalDate earliestStartDate = LocalDate.parse(startDate);
-        if(earliestStartDate.isBefore(LocalDate.now())){
+        }else{
+            try{
+                LocalDate earliestStartDate = LocalDate.parse(startDate);
+                        if(earliestStartDate.isBefore(LocalDate.now())){
             isValidApplication = false;
             application.setStartDateError("Date must not be in the past");
         }
         else{
             application.setEarliestStartDate(earliestStartDate);
         }
+            }catch(Exception e){
+                application.setStartDateError("StartDate input was bad");
+            }
+        }
+        
+
         
         System.out.println("createApplication desiredSalary");
-        double desiredSalary = Double.parseDouble(request.getParameter("salary"));
+        try{
+                double desiredSalary = Double.parseDouble(request.getParameter("salary"));
         if(desiredSalary < 1)
         {
             application.setSalaryError("Desired Salary too low");
@@ -245,6 +255,10 @@ public class ApplicationServlet extends HttpServlet {
         else{
             application.setDesiredSalary(desiredSalary);
         }
+        }catch(Exception e){
+            application.setSalaryError("Desired Salary could not be read as a number");
+        }
+
         
         int jobId = Integer.parseInt(request.getParameter("jobId"));
         if(isValidApplication){
@@ -271,7 +285,8 @@ public class ApplicationServlet extends HttpServlet {
             }
             
             System.out.println("redirecting to applications list");
-            response.sendRedirect("application");
+            request.setAttribute("jobID", jobId);
+            request.getRequestDispatcher("/WEB-INF/jsp/view/applicationSuccess.jsp").forward(request, response);
         }else{
             request.setAttribute("Application", application);
             //System.out.println("Application error, sending back to job page");
